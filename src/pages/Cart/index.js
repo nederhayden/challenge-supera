@@ -14,17 +14,17 @@ export default function Cart() {
     const total = useSelector((state) =>
         formatPrice(
             state.cart.reduce((totalSum, product) => {
-                return totalSum + 10 + product.price * product.amount;
+                return totalSum + product.price * product.amount > 250
+                    ? totalSum + product.price * product.amount
+                    : totalSum + 10 + product.price * product.amount;
             }, 0)
         )
     );
 
     const shipping = useSelector((state) =>
-        formatPrice(
-            state.cart.reduce((totalSum, product) => {
-                return totalSum + 10 * product.amount;
-            }, 0)
-        )
+        state.cart.reduce((totalSum) => {
+            return total > 250 ? 'Grátis' : formatPrice(totalSum + 10);
+        }, 0)
     );
 
     const cart = useSelector((state) =>
@@ -73,7 +73,6 @@ export default function Cart() {
                             </td>
                             <td>
                                 <strong>{product.name}</strong>
-                                <span>{product.priceFormatted}</span>
                             </td>
                             <td>
                                 <div>

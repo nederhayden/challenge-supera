@@ -3,7 +3,7 @@ import { darken } from 'polished';
 
 export const Container = styled.div`
     padding: 30px;
-    background: #fff;
+    background: #222;
     border-radius: 4px;
 
     footer {
@@ -33,7 +33,7 @@ export const ProductTable = styled.table`
     width: 100%;
 
     thead th {
-        color: #999;
+        color: #fff;
         text-align: left;
         padding: 12px;
     }
@@ -48,7 +48,7 @@ export const ProductTable = styled.table`
     }
 
     strong {
-        color: #333;
+        color: #eee;
         display: block;
     }
 
@@ -57,6 +57,7 @@ export const ProductTable = styled.table`
         margin-top: 5px;
         font-size: 18px;
         font-weight: bold;
+        color: #fff;
     }
 
     div {
@@ -69,6 +70,7 @@ export const ProductTable = styled.table`
             border-radius: 4px;
             color: #555;
             padding: 6px;
+            width: 50px;
         }
     }
 
@@ -84,13 +86,14 @@ export const Frete = styled.div`
     align-items: baseline;
 
     p {
-        color: #999;
+        color: #eee;
         font-weight: bold;
     }
 
     strong {
         font-size: 20px;
         margin-left: 5px;
+        color: #fff;
     }
 `;
 
@@ -99,12 +102,13 @@ export const Total = styled.div`
     align-items: baseline;
 
     span {
-        color: #999;
+        color: #eee;
         font-weight: bold;
     }
 
     strong {
         font-size: 28px;
         margin-left: 5px;
+        color: #fff;
     }
 `;
