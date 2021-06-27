@@ -79,7 +79,20 @@ export const ProductTable = styled.table`
     }
 `;
 
-export const Frete = styled.div``;
+export const Frete = styled.div`
+    display: flex;
+    align-items: baseline;
+
+    p {
+        color: #999;
+        font-weight: bold;
+    }
+
+    strong {
+        font-size: 20px;
+        margin-left: 5px;
+    }
+`;
 
 export const Total = styled.div`
     display: flex;

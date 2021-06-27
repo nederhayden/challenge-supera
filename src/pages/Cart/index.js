@@ -11,18 +11,18 @@ import { Container, ProductTable, Total, Frete } from './styles';
 import images from '../../services/list-image';
 
 export default function Cart() {
-    /* const frete = useSelector((state) =>
-        formatPrice(
-            state.cart.reduce((totalSum, product) => {
-                return totalSum + product.price * product.amount;
-            }, 0)
-        )
-    ); */
-
     const total = useSelector((state) =>
         formatPrice(
             state.cart.reduce((totalSum, product) => {
-                return totalSum + product.price * product.amount;
+                return totalSum + 10 + product.price * product.amount;
+            }, 0)
+        )
+    );
+
+    const shipping = useSelector((state) =>
+        formatPrice(
+            state.cart.reduce((totalSum, product) => {
+                return totalSum + 10 * product.amount;
             }, 0)
         )
     );
@@ -128,12 +128,12 @@ export default function Cart() {
                 <button type="button">Finalizar pedido</button>
                 <Frete>
                     <p>Frete: </p>
-                    {/* <strong>{frete}</strong> */}
-                    <Total>
-                        <span>Total</span>
-                        <strong>{total}</strong>
-                    </Total>
+                    <strong>{shipping}</strong>
                 </Frete>
+                <Total>
+                    <span>Total</span>
+                    <strong>{total}</strong>
+                </Total>
             </footer>
         </Container>
     );
