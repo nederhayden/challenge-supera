@@ -11,20 +11,24 @@ import { Container, ProductTable, Total, Frete } from './styles';
 import images from '../../services/list-image';
 
 export default function Cart() {
-    const total = useSelector((state) =>
-        formatPrice(
-            state.cart.reduce((totalSum, product) => {
-                return totalSum + product.price * product.amount > 250
-                    ? totalSum + product.price * product.amount
-                    : totalSum + 10 + product.price * product.amount;
-            }, 0)
-        )
+    const totalProducts = useSelector((state) =>
+        state.cart.reduce((totalSum, product) => {
+            return totalSum + product.price * product.amount;
+        }, 0)
     );
 
     const shipping = useSelector((state) =>
         state.cart.reduce((totalSum) => {
-            return total > 250 ? 'Grátis' : formatPrice(totalSum + 10);
+            return totalSum + 10;
         }, 0)
+    );
+
+    const total = useSelector((state) =>
+        formatPrice(
+            state.cart.reduce((totalSum) => {
+                return totalProducts < 250 ? totalSum + 10 : totalSum;
+            }, totalProducts)
+        )
     );
 
     const cart = useSelector((state) =>
@@ -67,7 +71,7 @@ export default function Cart() {
                 </thead>
                 <tbody>
                     {cart.map((product) => (
-                        <tr>
+                        <tr key={product.id}>
                             <td>
                                 <Image productId={product.id} />
                             </td>
