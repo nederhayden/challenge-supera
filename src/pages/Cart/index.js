@@ -19,7 +19,7 @@ export default function Cart() {
 
     const shipping = useSelector((state) =>
         state.cart.reduce((totalSum) => {
-            return totalSum + 10;
+            return totalProducts < 250 ? totalSum + 10 : 'Grátis';
         }, 0)
     );
 
