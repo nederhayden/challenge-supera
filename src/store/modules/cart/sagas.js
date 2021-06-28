@@ -1,5 +1,6 @@
+import { toast } from 'react-toastify';
 import { all, select, call, put, takeLatest } from 'redux-saga/effects';
-import { addToCartSucess, updateAmountSucess } from './actions';
+import { addToCartSuccess, updateAmountSuccess } from './actions';
 import { formatPrice } from '../../../util/format';
 import api from '../../../services/api';
 
@@ -13,7 +14,8 @@ function* addToCart({ id }) {
     const amount = currentAmount + 1;
 
     if (productExists) {
-        yield put(updateAmountSucess(id, amount));
+        yield put(updateAmountSuccess(id, amount));
+        toast.success('Quantidade alterada com sucesso');
     } else {
         const response = yield call(api.get, `/products/${id}`);
 
@@ -23,14 +25,15 @@ function* addToCart({ id }) {
             priceFormatted: formatPrice(response.data.price),
         };
 
-        yield put(addToCartSucess(data));
+        yield put(addToCartSuccess(data));
+        toast.success('Produto adicionado com sucesso');
     }
 }
 
 function* updateAmount({ id, amount }) {
     if (amount <= 0) return;
 
-    yield put(updateAmountSucess(id, amount));
+    yield put(updateAmountSuccess(id, amount));
 }
 
 export default all([

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { formatPrice } from '../../util/format';
 import { ProductList, Select } from './styles';
 import api from '../../services/api';
@@ -10,14 +10,6 @@ import * as CartActions from '../../store/modules/cart/actions';
 export default function Home() {
     const [products, setProducts] = useState([]);
     const [sortType, setSortType] = useState('name');
-
-    const amount = useSelector((state) =>
-        state.cart.reduce((sumAmount, product) => {
-            sumAmount[product.id] = product.amount;
-
-            return sumAmount;
-        }, {})
-    );
 
     const dispatch = useDispatch();
 
@@ -73,7 +65,6 @@ export default function Home() {
                             type="button"
                             onClick={() => handleAddProducts(product.id)}
                         >
-                            <div>{amount[product.id] || 0}</div>
                             <span>Adicionar ao carrinho</span>
                         </button>
                     </li>
