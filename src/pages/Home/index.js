@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { formatPrice } from '../../util/format';
-import { ProductList, Select } from './styles';
+import { Wrapper, Select, ProductList } from './styles';
 import api from '../../services/api';
 import images from '../../services/list-image';
 
@@ -47,13 +47,13 @@ export default function Home() {
 
     return (
         <>
-            <Select>
-                <select onChange={(e) => setSortType(e.target.value)}>
+            <Wrapper>
+                <Select onChange={(e) => setSortType(e.target.value)}>
                     <option value="name">Ordem Alfabética</option>
                     <option value="price">Preço</option>
                     <option value="score">Popularidade</option>
-                </select>
-            </Select>
+                </Select>
+            </Wrapper>
             <ProductList>
                 {products.map((product) => (
                     <li key={product.id}>

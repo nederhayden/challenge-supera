@@ -1,8 +1,16 @@
 import styled from 'styled-components';
-import { darken } from 'polished';
 
-export const Select = styled.div`
+export const Wrapper = styled.div`
     margin: 10px 0;
+`;
+
+export const Select = styled.select`
+    background: #191920;
+    color: #00e7f9;
+    border: 1px solid #00e7f9;
+    border-radius: 4px;
+    transition: background 0.2s;
+    height: 40px;
 `;
 
 export const ProductList = styled.ul`
@@ -38,8 +46,8 @@ export const ProductList = styled.ul`
         }
 
         button {
-            background: #166536;
-            color: #fff;
+            background: #00e7f9;
+            color: #222;
             border: 0;
             border-radius: 4px;
             overflow: hidden;
@@ -47,9 +55,12 @@ export const ProductList = styled.ul`
             display: flex;
             align-items: center;
             transition: background 0.2s;
+            height: 40px;
 
             &:hover {
-                background: ${darken(0.03, '#166536')};
+                background: #222;
+                color: #00e7f9;
+                border: 1px solid #00e7f9;
             }
 
             div {
